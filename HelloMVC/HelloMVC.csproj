@@ -159,6 +159,7 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UserFM.cshtml" />
+    <Content Include="Views\User\EditPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

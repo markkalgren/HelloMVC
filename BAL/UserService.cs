@@ -35,7 +35,7 @@ namespace BLL
             if (IsValidUser(userFM))
             {
                 UserDAO dao = new UserDAO();
-                User user= new User();
+                User user = new User();
                 user.Email = userFM.Email;
                 user.Password = GeneratePassword();
                 //TODO email temporary password to user
@@ -69,7 +69,7 @@ namespace BLL
         public bool IsValidUser(UserFM userFM)
         {
             UserDAO dao = new UserDAO();
-            if(userFM.Email != null && userFM.Email.Length > 5 && dao.GetUserByEmail(userFM.Email) == null)
+            if (userFM.Email != null && userFM.Email.Length > 5 && dao.GetUserByEmail(userFM.Email) == null)
             {
                 return true;
             }
@@ -83,12 +83,42 @@ namespace BLL
             UserFM userFM = new UserFM();
             return userFM;
         }
+        public PasswordFM GetPasswordFM(int ID)
+        {
+            UserDAO dao = new UserDAO();
+            User user = dao.GetUserByID(ID);
+            PasswordFM passFM = new PasswordFM();
+            return passFM;
+        }
 
         public void UpdateUser(UserFM userFM)
         {
             UserDAO dao = new UserDAO();
             User user = dao.GetUserByID(userFM.ID);
             user.Email = userFM.Email;
+            dao.UpdateUser(user);
+        }
+
+        public void DeleteUser(int ID)
+        {
+            UserDAO dao = new UserDAO();
+            dao.DeleteUser(ID);
+        }
+
+        //public void EditPassword(PasswordFM passwordFM)
+        //{
+        //    UserDAO dao = new UserDAO();
+        //    User user = dao.GetUserByID(passwordFM.ID);
+        //    //user.ID = passwordFM.ID;
+        //    user.Password = passwordFM.Password;
+        //    dao.UpdateUser(user);
+        //}
+        public void ResetPassword(int ID)
+        {
+            UserDAO dao = new UserDAO();
+            User user = dao.GetUserByID(ID);
+            //user.ID = passwordFM.ID;
+            user.Password = GeneratePassword();
             dao.UpdateUser(user);
         }
     }

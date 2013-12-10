@@ -49,9 +49,31 @@ namespace HelloMVC.Controllers
             users.UpdateUser(userFM);
             return RedirectToAction("Index");
         }
-        public void Delete(int ID)
+        public ActionResult Delete(int ID)
         {
-
+            UserService users = new UserService();
+            users.DeleteUser(ID);
+            return RedirectToAction("Index");
         }
+        public ActionResult ResetPassword(int ID)
+        {
+            UserService users = new UserService();
+            users.ResetPassword(ID);
+            return RedirectToAction("Index");
+        }
+        //[HttpGet]
+        //public ActionResult EditPassword(int ID)
+        //{
+        //    UserService users = new UserService();
+        //    PasswordFM pass = users.GetPasswordFM(ID);
+        //    return View(pass);
+        //}
+        //[HttpPost]
+        //public ActionResult EditPassword(PasswordFM passwordFM)
+        //{
+        //    UserService users = new UserService();
+        //    users.EditPassword(passwordFM);
+        //    return RedirectToAction("Index");
+        //}
 	}
 }

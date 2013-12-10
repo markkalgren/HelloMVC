@@ -74,6 +74,23 @@ namespace DAL
                 return null;
             }
         }
+        public User DeleteUser(int ID)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@ID", ID)
+            };
+                return ReadUsers("DeleteUser", parameters).SingleOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error:\n" + e.Message);
+                Console.ReadKey();
+                return null;
+            }
+        }
         public User GetUserByEmail(string email)
         {
             try
