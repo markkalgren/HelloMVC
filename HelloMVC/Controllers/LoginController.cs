@@ -32,7 +32,7 @@ namespace HelloMVC.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "That was wrong, idiot. Try again or get out.";
+                ViewBag.ErrorMessage = "That was wrong, idiot. Try again or go away.";
                 return View("Index");
             }
         }

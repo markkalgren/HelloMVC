@@ -71,12 +71,20 @@ namespace HelloMVC.Controllers
         public ActionResult EditPassword(EditPassFM pass)
         {
             UserService users = new UserService();
-            if (users.VerifyPass(pass) && pass.NewPass == pass.ConfirmPass && pass.NewPass.Length > 7 && pass.NewPass.Length < 17)
+            if (pass.Password != null && pass.NewPass != null && pass.ConfirmPass != null)
             {
-                users.EditPassword(pass);
+                if (users.VerifyPass(pass) && pass.NewPass == pass.ConfirmPass && pass.NewPass.Length > 7 && pass.NewPass.Length < 17)
+                {
+                    users.EditPassword(pass);
+                }
             }
+            //else
+            //{
+                ViewBag.ErrorMessage = "That was an invalid password, idiot. Try again or get out.";
+                return View("EditPassword");
+            //}
             //users.EditPassword(pass);
-            return RedirectToAction("Index");
+            //return View("Index");
         }
 	}
 }
