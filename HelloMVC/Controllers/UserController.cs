@@ -61,19 +61,19 @@ namespace HelloMVC.Controllers
             users.ResetPassword(ID);
             return RedirectToAction("Index");
         }
-        //[HttpGet]
-        //public ActionResult EditPassword(int ID)
-        //{
-        //    UserService users = new UserService();
-        //    PasswordFM pass = users.GetPasswordFM(ID);
-        //    return View(pass);
-        //}
-        //[HttpPost]
-        //public ActionResult EditPassword(PasswordFM passwordFM)
-        //{
-        //    UserService users = new UserService();
-        //    users.EditPassword(passwordFM);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpGet]
+        public ActionResult EditPassword(int ID)
+        {
+            UserService users = new UserService();
+            PasswordFM pass = users.GetPasswordFM(ID);
+            return View(pass);
+        }
+        [HttpPost]
+        public ActionResult EditPassword(EditPassFM editPassFM)
+        {
+            UserService users = new UserService();
+            users.EditPassword(editPassFM);
+            return RedirectToAction("Index");
+        }
 	}
 }

@@ -105,14 +105,14 @@ namespace BLL
             dao.DeleteUser(ID);
         }
 
-        //public void EditPassword(PasswordFM passwordFM)
-        //{
-        //    UserDAO dao = new UserDAO();
-        //    User user = dao.GetUserByID(passwordFM.ID);
-        //    //user.ID = passwordFM.ID;
-        //    user.Password = passwordFM.Password;
-        //    dao.UpdateUser(user);
-        //}
+        public void EditPassword(PasswordFM passwordFM)
+        {
+            UserDAO dao = new UserDAO();
+            User user = dao.GetUserByID(passwordFM.ID);
+            //user.ID = passwordFM.ID;
+            user.Password = passwordFM.Password;
+            dao.UpdateUser(user);
+        }
         public void ResetPassword(int ID)
         {
             UserDAO dao = new UserDAO();
