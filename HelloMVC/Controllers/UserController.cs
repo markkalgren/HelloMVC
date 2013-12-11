@@ -65,14 +65,17 @@ namespace HelloMVC.Controllers
         public ActionResult EditPassword(int ID)
         {
             UserService users = new UserService();
-            PasswordFM pass = users.GetPasswordFM(ID);
-            return View(pass);
+            return View(users.GetEditPassFM(ID));
         }
         [HttpPost]
-        public ActionResult EditPassword(EditPassFM editPassFM)
+        public ActionResult EditPassword(EditPassFM pass)
         {
             UserService users = new UserService();
-            users.EditPassword(editPassFM);
+            if (users.VerifyPass(pass) && pass.NewPass == pass.ConfirmPass && pass.NewPass.Length > 7)
+            {
+                users.EditPassword(pass);
+            }
+            //users.EditPassword(pass);
             return RedirectToAction("Index");
         }
 	}

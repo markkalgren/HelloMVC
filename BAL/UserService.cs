@@ -90,12 +90,25 @@ namespace BLL
             PasswordFM passFM = new PasswordFM();
             return passFM;
         }
-
+        public EditPassFM GetEditPassFM(int ID)
+        {
+            UserDAO dao = new UserDAO();
+            User user = dao.GetUserByID(ID);
+            EditPassFM passFM = new EditPassFM(user);
+            return passFM;
+        }
         public void UpdateUser(UserFM userFM)
         {
             UserDAO dao = new UserDAO();
             User user = dao.GetUserByID(userFM.ID);
             user.Email = userFM.Email;
+            dao.UpdateUser(user);
+        }
+        public void UpdateUser(EditPassFM pass)
+        {
+            UserDAO dao = new UserDAO();
+            User user = dao.GetUserByID(pass.ID);
+            user.Password = pass.NewPass;
             dao.UpdateUser(user);
         }
 
@@ -104,13 +117,21 @@ namespace BLL
             UserDAO dao = new UserDAO();
             dao.DeleteUser(ID);
         }
+        public bool VerifyPass(EditPassFM pass)
+        {
+            if (pass.Password == GetEditPassFM(pass.ID).Password)
+            {
+                return true;
+            }
+            return false;
+        }
 
-        public void EditPassword(PasswordFM passwordFM)
+        public void EditPassword(EditPassFM passwordFM)
         {
             UserDAO dao = new UserDAO();
             User user = dao.GetUserByID(passwordFM.ID);
             //user.ID = passwordFM.ID;
-            user.Password = passwordFM.Password;
+            user.Password = passwordFM.NewPass;
             dao.UpdateUser(user);
         }
         public void ResetPassword(int ID)
