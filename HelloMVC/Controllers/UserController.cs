@@ -71,7 +71,7 @@ namespace HelloMVC.Controllers
         public ActionResult EditPassword(EditPassFM pass)
         {
             UserService users = new UserService();
-            if (users.VerifyPass(pass) && pass.NewPass == pass.ConfirmPass && pass.NewPass.Length > 7)
+            if (users.VerifyPass(pass) && pass.NewPass == pass.ConfirmPass && pass.NewPass.Length > 7 && pass.NewPass.Length < 17)
             {
                 users.EditPassword(pass);
             }
